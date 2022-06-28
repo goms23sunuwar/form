@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Optimal Web : Contact Form With JS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<style>
+  input[type=date], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+</style>
+
+<body>
+  <!-- contact1 -->
+  <section class="w3l-simple-contact-form1">
+    <div class="contact-form section-gap">
+      <div class="wrapper">
+        <div class="text-center">
+        <h1 style="font-size: 40px; " >Request For leave</h1>
+        <br>
+      </div>
+        <div class="contact-form" style="max-width: 450px; margin: 0 auto;">
+          <div class="form-mid">
+
+
+            <form action="javascript:sendmail()" method="post">
+
+              <label for="fdate">Name: </label><br><br>
+              <div class="field">
+              <input type="text" class="form-control" name="Name" id="Name" placeholder="Enter your name." required="">
+              </div>
+
+              <label for="fdate">Employe ID: </label><br><br>
+
+              <div class="field">
+              <input type="number" class="form-control" name="Employee" id="ID" placeholder="Your Employee ID" required="">
+              </div>
+
+              <label for="fdate">From Date: </label><br>
+              <div class="field">
+                <input type="date" class="form-control" name="From date" id="Fdate" placeholder="From Date" required="">
+              </div>
+
+              <label for="fdate">To Date: </label><br>
+              <div class="field">
+                <input type="date" class="form-control" name="To date" id="Tdate" placeholder="To Date" required="">
+              </div>
+              <label for="fdate">Reason: </label><br><br>
+              <div class="field">
+                <input type="text" class="form-control" name="Reason" id="reason" placeholder="Reason" required="">
+                
+              </div>
+
+                <div class="field">
+
+                <p> Leave type: <br>
+                  <select name="Bank_type" id="L_type" required>
+                     <option value = "">--Select the Leave Type</option>
+                     <option value = "Casual Leave"> Casual Leave</option>
+                      <option value = "Earned Leave"> Earned Leave</option>
+                      <option value = "Study Leave"> Study Leave </option>
+                      <option value = "Maternity Leave"> Maternity Leave</option>
+                      <option value = "Paternity Leave"> Paternity Leave</option>
+                      <option value = "Extraordinary Leave"> Extraordinary Leave</option>
+                      <option value = "Medical Leave"> Medical Leave</option>
+                     
+                  
+                     </select>
+                   </p>
+                  </div>
+
+
+                  <label for="fdate">Remark: </label><br><br>
+                  <div class="field">
+                  
+                  <textarea name="Message" class="form-control" id="remark" placeholder="Who will handle your work in your absence"
+                required=""></textarea>
+              </div>
+
+              <label for="fdate">Superior Email: </label><br><br>
+              <div class="field">
+                <input type="email" class="form-control" name="Sender" id="Sender" placeholder="Superior Email"
+                  required="">
+              </div>
+
+              
+              <button type="submit" class="btn btn-contact">Submit</button>
+              <!-- <input type="button" class="btn btn-contact" onclick="sendmail();"  value="Send Message"> -->
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /contact1 -->
+  
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+ 
+<script>  
+
+     function sendmail(){
+    
+			var name = $('#Name').val();
+      var Employee=$('#ID').val();
+      var from_date=$('#Fdate').val();
+      var To_date=$('#Tdate').val();
+      var Reason=$('#reason').val();
+      var Leave_t=$('#L_type').val();
+      var Remark=$('#remark').val();
+      var email = $('#Sender').val();
+			
+			
+      
+
+			// var body = $('#body').val();
+
+			var Body='Name: '+name+  '<br>Employee ID: '+Employee+  '<br>From date: '+from_date+  '<br>To Date: '+To_date+  '<br>Reason: '+Reason+    '<br>Leave Type: '+Leave_t+   '<br>Remark: '+Remark+ '<br>Superior Email: '+email;
+			//console.log(name, phone, email, message);
+
+			Email.send({
+        SecureToken : "1c937f25-4407-47c2-89d6-81903cfb6aff",
+				To: 'mailto:rzangmo@nec.gov.bt',
+				From: "requestforleave345@gmail.com",
+				Subject: "New message on contact from "+name,
+				Body: Body
+			}).then(
+				message =>{
+					//console.log (message);
+					if(message=='OK'){
+					alert('Your mail has been send. Thank you for connecting.');
+					}
+					else{
+						console.error (message);
+						alert('There is error at sending message. ')
+						
+					}
+
+				}
+			);
+
+
+
+		}
+
+
+    </script>
+ </script>
+
+</body>
+</html>
